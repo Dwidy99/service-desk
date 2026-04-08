@@ -23,9 +23,11 @@ function Home() {
   const departmentState = useSelector((state) => state.departments)
   const memberState = useSelector((state) => state.members)
 
-  const tickets = ticketState?.tickets || []
-  const departments = departmentState?.departments || []
-  const members = memberState?.members || []
+  const tickets = Array.isArray(ticketState?.tickets) ? ticketState.tickets : []
+  const departments = Array.isArray(departmentState?.departments)
+    ? departmentState.departments
+    : []
+  const members = Array.isArray(memberState?.members) ? memberState.members : []
 
   useEffect(() => {
     dispatch(getTickets())
@@ -35,10 +37,6 @@ function Home() {
       dispatch(getMembers())
     }
   }, [dispatch, isAdmin])
-
-  console.log('user:', user)
-  console.log('role:', user?.role)
-  console.log('isAdmin:', isAdmin)
 
   const totalTickets = tickets.length
   const totalDepartments = departments.length

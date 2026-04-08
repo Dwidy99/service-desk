@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = '/api/tickets/'
+const API_URL = `${process.env.REACT_APP_API_URL}/api/tickets/`
 
 // Create new ticket
 const createTicket = async (ticketData, token) => {
@@ -23,11 +23,10 @@ const getTickets = async (token) => {
   }
 
   const response = await axios.get(API_URL, config)
-
   return response.data
 }
 
-// Get user ticket
+// Get single ticket
 const getTicket = async (ticketId, token) => {
   const config = {
     headers: {
@@ -36,7 +35,6 @@ const getTicket = async (ticketId, token) => {
   }
 
   const response = await axios.get(API_URL + ticketId, config)
-
   return response.data
 }
 
@@ -57,6 +55,7 @@ const closeTicket = async (ticketId, token) => {
   return response.data
 }
 
+// Open ticket
 const openTicket = async (ticketId, token) => {
   const config = {
     headers: {
@@ -73,6 +72,7 @@ const openTicket = async (ticketId, token) => {
   return response.data
 }
 
+// Update ticket status
 const updateTicketStatus = async (ticketId, status, token) => {
   const config = {
     headers: {
@@ -89,6 +89,7 @@ const updateTicketStatus = async (ticketId, status, token) => {
   return response.data
 }
 
+// Assign department
 const assignDepartment = async (ticketId, departmentId, token) => {
   const config = {
     headers: {
@@ -101,6 +102,7 @@ const assignDepartment = async (ticketId, departmentId, token) => {
     { departmentId },
     config
   )
+
   return response.data
 }
 
