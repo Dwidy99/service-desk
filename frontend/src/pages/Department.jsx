@@ -162,6 +162,14 @@ function Department() {
               Manage departments used for ticket routing and member assignment.
             </p>
           </div>
+
+          <Link
+            to='/create-department'
+            className='inline-flex items-center justify-center gap-2 rounded-2xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700'
+          >
+            <FaPlus className='text-xs' />
+            Add Department
+          </Link>
         </div>
 
         <div className='mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3'>
