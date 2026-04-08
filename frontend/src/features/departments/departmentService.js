@@ -1,7 +1,7 @@
 // src/features/departments/departmentService.js
 import axios from 'axios'
 
-const API_URL = '/api/departments/'
+const API_URL = `${process.env.REACT_APP_API_URL}/api/departments/`
 
 const getDepartments = async (token) => {
   const config = {

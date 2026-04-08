@@ -1,7 +1,7 @@
 // src/features/members/memberService.js
 import axios from 'axios'
 
-const API_URL = '/api/members/'
+const API_URL = `${process.env.REACT_APP_API_URL}/api/members/`
 
 const createMember = async (memberData, token) => {
   const config = {
