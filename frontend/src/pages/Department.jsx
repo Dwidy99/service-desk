@@ -23,11 +23,6 @@ function Department() {
   const { user } = useSelector((state) => state.auth)
   const departmentState = useSelector((state) => state.departments)
 
-  const departments = Array.isArray(departmentState?.departments)
-    ? departmentState.departments
-    : []
-  const isLoading = departmentState?.isLoading || false
-
   const [isEditOpen, setIsEditOpen] = useState(false)
   const [isDeleteOpen, setIsDeleteOpen] = useState(false)
   const [selectedDepartment, setSelectedDepartment] = useState(null)
@@ -40,23 +35,33 @@ function Department() {
     status: 'active',
   })
 
+  const departments = useMemo(() => {
+    return Array.isArray(departmentState?.departments)
+      ? departmentState.departments
+      : []
+  }, [departmentState?.departments])
+
+  const isLoading = departmentState?.isLoading || false
+
+  const totalDepartments = departments.length
+
+  const activeDepartments = useMemo(() => {
+    return departments.filter((dept) => dept.status === 'active').length
+  }, [departments])
+
+  const inactiveDepartments = useMemo(() => {
+    return departments.filter((dept) => dept.status === 'inactive').length
+  }, [departments])
+
   useEffect(() => {
-    dispatch(getDepartments()).unwrap().catch(toast.error)
-  }, [dispatch])
+    if (user?.role === 'admin') {
+      dispatch(getDepartments()).unwrap().catch(toast.error)
+    }
+  }, [dispatch, user])
 
   if (user?.role !== 'admin') {
     return <Navigate to='/' replace />
   }
-
-  const totalDepartments = departments.length
-  const activeDepartments = useMemo(
-    () => departments.filter((dept) => dept.status === 'active').length,
-    [departments]
-  )
-  const inactiveDepartments = useMemo(
-    () => departments.filter((dept) => dept.status === 'inactive').length,
-    [departments]
-  )
 
   const openEditModal = (department) => {
     setSelectedDepartment(department)
