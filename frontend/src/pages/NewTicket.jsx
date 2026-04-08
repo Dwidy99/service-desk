@@ -7,7 +7,7 @@ import { createTicket } from '../features/tickets/ticketSlice'
 import { getDepartments } from '../features/departments/departmentSlice'
 
 function NewTicket() {
-  const { user } = useSelector((state) => state.auth)
+  // const { _ } = useSelector((state) => state.auth)
   const { departments = [], isLoading } = useSelector(
     (state) => state.departments
   )
