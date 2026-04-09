@@ -54,14 +54,14 @@ function Home() {
   ).length
 
   return (
-    <div className='min-h-screen w-full bg-gray-50 px-4 py-8'>
-      <div className='max-w-6xl mx-auto'>
-        <div className='mb-8'>
-          <h1 className='text-3xl font-bold text-gray-800'>
+    <div className='min-h-screen bg-gray-50 py-8 px-6'>
+      <div className='max-w-7xl mx-auto'>
+        <div className='mb-6'>
+          <h1 className='text-3xl font-bold text-gray-800 leading-tight'>
             Service Desk Dashboard
           </h1>
-          <p className='text-gray-500 mt-2'>
-            Manage support requests and monitor help desk activity
+          <p className='text-gray-500 mt-2 text-lg'>
+            Monitor support requests and help desk activity
           </p>
         </div>
 
@@ -71,50 +71,50 @@ function Home() {
           } gap-6 mb-8`}
         >
           {isAdmin && (
-            <div className='bg-white rounded-2xl shadow-md p-6 flex items-center gap-4'>
-              <div className='w-14 h-14 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-2xl'>
+            <div className='bg-white rounded-xl shadow-lg p-6 flex items-center gap-4 hover:shadow-xl transition'>
+              <div className='w-16 h-16 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-3xl'>
                 <FaUsers />
               </div>
               <div>
                 <p className='text-sm text-gray-500'>Total Members</p>
-                <h2 className='text-2xl font-bold text-gray-800'>
+                <h2 className='text-2xl font-semibold text-gray-800'>
                   {totalMembers}
                 </h2>
               </div>
             </div>
           )}
 
-          <div className='bg-white rounded-2xl shadow-md p-6 flex items-center gap-4'>
-            <div className='w-14 h-14 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-2xl'>
+          <div className='bg-white rounded-xl shadow-lg p-6 flex items-center gap-4 hover:shadow-xl transition'>
+            <div className='w-16 h-16 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-3xl'>
               <FaTicketAlt />
             </div>
             <div>
               <p className='text-sm text-gray-500'>Total Tickets</p>
-              <h2 className='text-2xl font-bold text-gray-800'>
+              <h2 className='text-2xl font-semibold text-gray-800'>
                 {totalTickets}
               </h2>
             </div>
           </div>
 
-          <div className='bg-white rounded-2xl shadow-md p-6 flex items-center gap-4'>
-            <div className='w-14 h-14 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center text-2xl'>
+          <div className='bg-white rounded-xl shadow-lg p-6 flex items-center gap-4 hover:shadow-xl transition'>
+            <div className='w-16 h-16 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center text-3xl'>
               <FaClock />
             </div>
             <div>
               <p className='text-sm text-gray-500'>Active Tickets</p>
-              <h2 className='text-2xl font-bold text-gray-800'>
+              <h2 className='text-2xl font-semibold text-gray-800'>
                 {activeTickets}
               </h2>
             </div>
           </div>
 
-          <div className='bg-white rounded-2xl shadow-md p-6 flex items-center gap-4'>
-            <div className='w-14 h-14 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-2xl'>
+          <div className='bg-white rounded-xl shadow-lg p-6 flex items-center gap-4 hover:shadow-xl transition'>
+            <div className='w-16 h-16 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-3xl'>
               <FaBuilding />
             </div>
             <div>
               <p className='text-sm text-gray-500'>Departments</p>
-              <h2 className='text-2xl font-bold text-gray-800'>
+              <h2 className='text-2xl font-semibold text-gray-800'>
                 {totalDepartments}
               </h2>
             </div>
@@ -126,33 +126,33 @@ function Home() {
             isAdmin ? 'md:grid-cols-4' : 'md:grid-cols-2'
           } gap-6 mb-8`}
         >
-          <div className='bg-white rounded-2xl shadow-sm p-5 border border-gray-100'>
+          <div className='bg-white rounded-xl shadow-md p-5 border border-gray-100 hover:shadow-xl transition'>
             <p className='text-sm text-gray-500'>Closed Tickets</p>
-            <h3 className='text-2xl font-bold text-gray-800 mt-1'>
+            <h3 className='text-2xl font-semibold text-gray-800 mt-1'>
               {closedTickets}
             </h3>
           </div>
 
-          <div className='bg-white rounded-2xl shadow-sm p-5 border border-gray-100'>
+          <div className='bg-white rounded-xl shadow-md p-5 border border-gray-100 hover:shadow-xl transition'>
             <p className='text-sm text-gray-500'>Open Ratio</p>
-            <h3 className='text-2xl font-bold text-gray-800 mt-1'>
+            <h3 className='text-2xl font-semibold text-gray-800 mt-1'>
               {totalTickets > 0
                 ? `${Math.round((activeTickets / totalTickets) * 100)}%`
                 : '0%'}
             </h3>
           </div>
 
-          <div className='bg-white rounded-2xl shadow-sm p-5 border border-gray-100'>
+          <div className='bg-white rounded-xl shadow-md p-5 border border-gray-100 hover:shadow-xl transition'>
             <p className='text-sm text-gray-500'>Department Count</p>
-            <h3 className='text-2xl font-bold text-gray-800 mt-1'>
+            <h3 className='text-2xl font-semibold text-gray-800 mt-1'>
               {totalDepartments}
             </h3>
           </div>
 
           {isAdmin && (
-            <div className='bg-white rounded-2xl shadow-sm p-5 border border-gray-100'>
+            <div className='bg-white rounded-xl shadow-md p-5 border border-gray-100 hover:shadow-xl transition'>
               <p className='text-sm text-gray-500'>Managed Members</p>
-              <h3 className='text-2xl font-bold text-gray-800 mt-1'>
+              <h3 className='text-2xl font-semibold text-gray-800 mt-1'>
                 {totalMembers}
               </h3>
             </div>
@@ -166,30 +166,26 @@ function Home() {
         >
           <Link
             to='/new-ticket'
-            className='bg-white rounded-2xl shadow-md p-6 flex flex-col items-center text-center hover:shadow-lg transition'
+            className='bg-blue-600 text-white rounded-xl shadow-lg p-6 flex flex-col items-center text-center hover:shadow-xl transition'
           >
-            <div className='bg-blue-100 text-blue-600 p-4 rounded-full mb-4 text-2xl'>
+            <div className='bg-blue-100 text-blue-600 p-4 rounded-full mb-4 text-3xl'>
               <FaQuestionCircle />
             </div>
-            <h2 className='text-lg font-semibold text-gray-800'>
-              Create Ticket
-            </h2>
-            <p className='text-gray-500 text-sm mt-1'>
+            <h2 className='text-lg font-semibold text-white'>Create Ticket</h2>
+            <p className='text-white text-sm mt-1'>
               Submit a new support request
             </p>
           </Link>
 
           <Link
             to='/tickets'
-            className='bg-white rounded-2xl shadow-md p-6 flex flex-col items-center text-center hover:shadow-lg transition'
+            className='bg-green-600 text-white rounded-xl shadow-lg p-6 flex flex-col items-center text-center hover:shadow-xl transition'
           >
-            <div className='bg-green-100 text-green-600 p-4 rounded-full mb-4 text-2xl'>
+            <div className='bg-green-100 text-green-600 p-4 rounded-full mb-4 text-3xl'>
               <FaTicketAlt />
             </div>
-            <h2 className='text-lg font-semibold text-gray-800'>
-              View Tickets
-            </h2>
-            <p className='text-gray-500 text-sm mt-1'>
+            <h2 className='text-lg font-semibold text-white'>View Tickets</h2>
+            <p className='text-white text-sm mt-1'>
               View and track all support tickets
             </p>
           </Link>
@@ -198,30 +194,30 @@ function Home() {
             <>
               <Link
                 to='/members'
-                className='bg-white rounded-2xl shadow-md p-6 flex flex-col items-center text-center hover:shadow-lg transition'
+                className='bg-purple-600 text-white rounded-xl shadow-lg p-6 flex flex-col items-center text-center hover:shadow-xl transition'
               >
-                <div className='bg-purple-100 text-purple-600 p-4 rounded-full mb-4 text-2xl'>
+                <div className='bg-purple-100 text-purple-600 p-4 rounded-full mb-4 text-3xl'>
                   <FaUserPlus />
                 </div>
-                <h2 className='text-lg font-semibold text-gray-800'>
+                <h2 className='text-lg font-semibold text-white'>
                   Manage Members
                 </h2>
-                <p className='text-gray-500 text-sm mt-1'>
+                <p className='text-white text-sm mt-1'>
                   Add and manage service desk members
                 </p>
               </Link>
 
               <Link
                 to='/departments'
-                className='bg-white rounded-2xl shadow-md p-6 flex flex-col items-center text-center hover:shadow-lg transition'
+                className='bg-indigo-600 text-white rounded-xl shadow-lg p-6 flex flex-col items-center text-center hover:shadow-xl transition'
               >
-                <div className='bg-indigo-100 text-indigo-600 p-4 rounded-full mb-4 text-2xl'>
+                <div className='bg-indigo-100 text-indigo-600 p-4 rounded-full mb-4 text-3xl'>
                   <FaBuilding />
                 </div>
-                <h2 className='text-lg font-semibold text-gray-800'>
+                <h2 className='text-lg font-semibold text-white'>
                   Manage Departments
                 </h2>
-                <p className='text-gray-500 text-sm mt-1'>
+                <p className='text-white text-sm mt-1'>
                   Create and organize support departments
                 </p>
               </Link>
