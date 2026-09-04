@@ -2,7 +2,7 @@
   "name": "service-desk",
   "version": "1.0.0",
   "description": "Service ticket app",
-  "main": "index.js",
+  "main": "backend/server.js",
   "scripts": {
     "start": "node backend/server.js",
     "server": "nodemon backend/server.js",
