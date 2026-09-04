@@ -11,9 +11,22 @@ connectDB()
 
 const app = express()
 
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://service-desk-eta.vercel.app',
+]
+const vercelPreviewOrigin = /^https:\/\/service-desk-[a-z0-9-]+-dwidy99s-projects\.vercel\.app$/i
+
 app.use(
   cors({
-    origin: ['http://localhost:3000', 'https://service-desk-eta.vercel.app'],
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin) || vercelPreviewOrigin.test(origin)) {
+        callback(null, true)
+        return
+      }
+
+      callback(null, false)
+    },
   })
 )
 
