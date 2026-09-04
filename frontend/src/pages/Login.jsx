@@ -77,7 +77,7 @@ function Login() {
               type='email'
               id='email'
               name='email'
-              value={email}
+              value='admin1@mail.com'
               onChange={onChange}
               placeholder='Enter your email'
               required
@@ -98,7 +98,7 @@ function Login() {
               name='password'
               value={password}
               onChange={onChange}
-              placeholder='Enter your password'
+              placeholder='admin123'
               required
               className='w-full rounded-xl border border-gray-200 px-4 py-3 text-gray-800 placeholder-gray-400 outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition'
             />
