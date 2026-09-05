@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
-import { FaSignInAlt } from 'react-icons/fa'
+import { FaEnvelope, FaEye, FaEyeSlash, FaSignInAlt } from 'react-icons/fa'
 import { useSelector, useDispatch } from 'react-redux'
 import { login } from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
@@ -12,6 +12,7 @@ function Login() {
     password: '',
   })
   const [isRedirecting, setIsRedirecting] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
 
   const { email, password } = formData
 
@@ -73,16 +74,19 @@ function Login() {
             >
               Email Address
             </label>
-            <input
-              type='email'
-              id='email'
-              name='email'
-              value={email}
-              onChange={onChange}
-              placeholder='admin1@mail.com'
-              required
-              className='w-full rounded-xl border border-gray-200 px-4 py-3 text-gray-800 placeholder-gray-400 outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition'
-            />
+            <div className='relative'>
+              <FaEnvelope className='pointer-events-none absolute inset-y-0 left-4 my-auto text-gray-400' />
+              <input
+                type='email'
+                id='email'
+                name='email'
+                value={email}
+                onChange={onChange}
+                placeholder='admin1@mail.com'
+                required
+                className='w-full rounded-xl border border-gray-200 px-4 py-3 pl-12 text-gray-800 placeholder-gray-400 outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition'
+              />
+            </div>
           </div>
 
           <div>
@@ -92,16 +96,27 @@ function Login() {
             >
               Password
             </label>
-            <input
-              type='password'
-              id='password'
-              name='password'
-              value={password}
-              onChange={onChange}
-              placeholder='admin123'
-              required
-              className='w-full rounded-xl border border-gray-200 px-4 py-3 text-gray-800 placeholder-gray-400 outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition'
-            />
+            <div className='relative'>
+              <input
+                type={showPassword ? 'text' : 'password'}
+                id='password'
+                name='password'
+                value={password}
+                onChange={onChange}
+                placeholder='admin123'
+                required
+                className='w-full rounded-xl border border-gray-200 px-4 py-3 pr-12 text-gray-800 placeholder-gray-400 outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition'
+              />
+              <button
+                type='button'
+                onClick={() => setShowPassword((current) => !current)}
+                className='absolute inset-y-0 right-3 flex w-8 items-center justify-center text-gray-400 transition hover:text-gray-700 focus:outline-none focus:text-blue-600'
+                aria-label={showPassword ? 'Hide password' : 'Show password'}
+                aria-pressed={showPassword}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
           </div>
 
           <button
