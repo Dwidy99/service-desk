@@ -4,9 +4,11 @@ import {
   Route,
   Navigate,
 } from 'react-router-dom'
+import { useEffect } from 'react'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Header from './components/Header'
+import AuthTransition from './components/AuthTransition'
 import Home from './pages/Home'
 import NewTicket from './pages/NewTicket'
 import Tickets from './pages/Tickets'
@@ -20,7 +22,8 @@ import PrivateRoute from './components/PrivateRoute'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import PublicRoute from './components/PublicRoute'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { clearAuthTransition } from './features/auth/authSlice'
 
 const AdminRoute = ({ children }) => {
   const { user } = useSelector((state) => state.auth)
@@ -32,6 +35,19 @@ const AdminRoute = ({ children }) => {
 }
 
 function App() {
+  const dispatch = useDispatch()
+  const { authTransition } = useSelector((state) => state.auth)
+
+  useEffect(() => {
+    if (!authTransition) return
+
+    const timeout = setTimeout(() => {
+      dispatch(clearAuthTransition())
+    }, 1100)
+
+    return () => clearTimeout(timeout)
+  }, [authTransition, dispatch])
+
   return (
     <Router>
       <div className='min-h-screen w-full bg-gray-50'>
@@ -137,6 +153,8 @@ function App() {
           pauseOnHover
           theme='light'
         />
+
+        {authTransition && <AuthTransition type={authTransition} />}
       </div>
     </Router>
   )

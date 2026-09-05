@@ -2,8 +2,6 @@ import { useState } from 'react'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 import {
-  FaCheckCircle,
-  FaCircleNotch,
   FaEnvelope,
   FaEye,
   FaEyeSlash,
@@ -18,7 +16,6 @@ function Login() {
     email: '',
     password: '',
   })
-  const [isRedirecting, setIsRedirecting] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
 
   const { email, password } = formData
@@ -47,40 +44,15 @@ function Login() {
       .unwrap()
       .then((user) => {
         toast.success(`Logged in as ${user.name}`)
-        setIsRedirecting(true)
-        setTimeout(() => {
-          navigate('/')
-        }, 900)
+        navigate('/')
       })
       .catch((error) => {
-        setIsRedirecting(false)
         toast.error(error)
       })
   }
 
   if (isLoading) {
     return <Spinner />
-  }
-
-  if (isRedirecting) {
-    return (
-      <div className='min-h-[calc(100vh-80px)] bg-gray-50 flex items-center justify-center px-4 py-10'>
-        <div className='w-full max-w-sm bg-white shadow-lg rounded-2xl p-8 text-center'>
-          <div className='mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-green-600'>
-            <FaCheckCircle className='text-3xl' />
-          </div>
-          <h1 className='text-2xl font-bold text-gray-800'>
-            Login successful
-          </h1>
-          <div className='mt-5 flex items-center justify-center gap-3 text-blue-600'>
-            <FaCircleNotch className='animate-spin text-xl' />
-            <span className='font-medium text-gray-600'>
-              Preparing your dashboard...
-            </span>
-          </div>
-        </div>
-      </div>
-    )
   }
 
   return (
@@ -151,10 +123,10 @@ function Login() {
 
           <button
             type='submit'
-            disabled={isLoading || isRedirecting}
+            disabled={isLoading}
             className='w-full bg-blue-600 text-white py-3 rounded-xl font-medium hover:bg-blue-700 transition shadow-sm disabled:opacity-60 disabled:cursor-not-allowed'
           >
-            {isLoading || isRedirecting ? 'Signing In...' : 'Sign In'}
+            {isLoading ? 'Signing In...' : 'Sign In'}
           </button>
         </form>
       </div>

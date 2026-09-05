@@ -14,6 +14,7 @@ const user = JSON.parse(localStorage.getItem('user'))
 const initialState = {
   user: user ? user : null,
   isLoading: false,
+  authTransition: null,
 }
 
 // Register new user
@@ -57,6 +58,9 @@ export const authSlice = createSlice({
     logout: (state) => {
       state.user = null
     },
+    clearAuthTransition: (state) => {
+      state.authTransition = null
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -76,14 +80,18 @@ export const authSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.user = action.payload
         state.isLoading = false
+        state.authTransition = 'login'
       })
       .addCase(login.rejected, (state) => {
         state.isLoading = false
       })
       .addCase(logout, (state) => {
         state.user = null
+        state.authTransition = 'logout'
       })
   },
 })
+
+export const { clearAuthTransition } = authSlice.actions
 
 export default authSlice.reducer

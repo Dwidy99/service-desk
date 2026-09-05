@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout } from '../features/auth/authSlice'
 import { useState, useRef, useEffect } from 'react'
+import { toast } from 'react-toastify'
 
 function Header() {
   const navigate = useNavigate()
@@ -13,7 +14,9 @@ function Header() {
   const dropdownRef = useRef()
 
   const onLogout = () => {
+    setOpen(false)
     dispatch(logout())
+    toast.success('Logged out successfully')
     navigate('/login')
   }
 
