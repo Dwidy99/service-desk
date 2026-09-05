@@ -1,7 +1,14 @@
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
-import { FaEnvelope, FaEye, FaEyeSlash, FaSignInAlt } from 'react-icons/fa'
+import {
+  FaCheckCircle,
+  FaCircleNotch,
+  FaEnvelope,
+  FaEye,
+  FaEyeSlash,
+  FaSignInAlt,
+} from 'react-icons/fa'
 import { useSelector, useDispatch } from 'react-redux'
 import { login } from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
@@ -41,7 +48,9 @@ function Login() {
       .then((user) => {
         toast.success(`Logged in as ${user.name}`)
         setIsRedirecting(true)
-        navigate('/')
+        setTimeout(() => {
+          navigate('/')
+        }, 900)
       })
       .catch((error) => {
         setIsRedirecting(false)
@@ -49,8 +58,29 @@ function Login() {
       })
   }
 
-  if (isLoading || isRedirecting) {
+  if (isLoading) {
     return <Spinner />
+  }
+
+  if (isRedirecting) {
+    return (
+      <div className='min-h-[calc(100vh-80px)] bg-gray-50 flex items-center justify-center px-4 py-10'>
+        <div className='w-full max-w-sm bg-white shadow-lg rounded-2xl p-8 text-center'>
+          <div className='mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-green-600'>
+            <FaCheckCircle className='text-3xl' />
+          </div>
+          <h1 className='text-2xl font-bold text-gray-800'>
+            Login successful
+          </h1>
+          <div className='mt-5 flex items-center justify-center gap-3 text-blue-600'>
+            <FaCircleNotch className='animate-spin text-xl' />
+            <span className='font-medium text-gray-600'>
+              Preparing your dashboard...
+            </span>
+          </div>
+        </div>
+      </div>
+    )
   }
 
   return (
